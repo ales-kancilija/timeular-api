@@ -1,4 +1,5 @@
 from .util import TimeularApiUtil
+from .integrations import Integrations
 
 
 class Timeular(TimeularApiUtil):
@@ -47,3 +48,8 @@ class Timeular(TimeularApiUtil):
 
         self.api_key = content.get('apiKey')
         self.api_secret = content.get('apiSecret')
+
+    def integrations(self) -> Integrations:
+        """Access endpoints for integrations
+        """
+        return Integrations(self.token)

@@ -11,7 +11,7 @@ API_SECRET = '<your_api_secret>'
 
 timeular = Timeular(api_key=API_KEY, api_secret=API_SECRET)
 
-# other auth functions
+# AUTH
 
 # gets the session token. Is called from constructor. Updates value: 'timeular.token'
 timeular.sign_in()
@@ -21,5 +21,9 @@ timeular.get_api_key()
 
 # gets new api key and secret. Updates values 'timeular.api_key' and 'timeular.api_secret'
 timeular.generate_api_key_and_secret()
+
+# INTEGRATIONS
+integrations = timeular.integrations()
+enabled_integraions = integrations.get_enabled_integrations()
 ```
     
