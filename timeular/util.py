@@ -13,7 +13,6 @@ class TimeularApiUtil:
         provides methods for making requests to Timeular API
         """
         self.base_url = 'https://api.timeular.com/api/v2'
-        self.token = None
 
     def _get(self, uri: str, params: Dict = None, args: Dict = None, token: str = None) -> Any:
         """Create GET http request
@@ -53,7 +52,7 @@ class TimeularApiUtil:
         args.update(**{'headers': self._get_headers(token)})
         return requests.put(full_url, data=dumps(data), **args)
 
-    def _patch(self, uri: str, token: str, data: Dict = None, args: Dict = None) -> Any:
+    def _patch(self, uri: str, data: Dict = None, args: Dict = None, token: str = None) -> Any:
         """Create PATCH http request
         """
         full_url = self.base_url + uri
@@ -65,7 +64,7 @@ class TimeularApiUtil:
         args.update(**{'headers': self._get_headers(token)})
         return requests.patch(full_url, data=dumps(data), **args)
 
-    def _delete(self, uri: str, token: str, args: Dict = None) -> Dict:
+    def _delete(self, uri: str, args: Dict = None, token: str = None) -> Dict:
         """Create DELETE http request
         """
         full_url = self.base_url + uri
