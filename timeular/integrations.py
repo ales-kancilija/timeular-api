@@ -18,4 +18,4 @@ class Integrations(TimeularApiUtil):
         endpoint: GET /integrations
         """
         response = self._get('/integrations', token=self.token)
-        return self._get_content_or_raise_error(response, 'integrations')
+        return self._get_content_or_raise_error(response)
