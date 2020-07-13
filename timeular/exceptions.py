@@ -1,12 +1,16 @@
 
-class ResponseError(Exception):
+class TimeularHttpException(Exception):
 
-    def __init__(self, status_code: int, message: str) -> None:
-        """ResponseError raised for all non-successful responses
+    def __init__(self, status_code: int, url: str, message: str = None) -> None:
+        """TimeularHttpException raised for all non-successful responses
         """
+        super().__init__()
         self.status_code = status_code
-        self.message = message
-        super().__init__(self.message)
+        self.url = url
+        self.message = message or ''
 
     def __str__(self):
-        return f'Response (code: {self.status_code}) -> {self.message}'
+        return f'TimeularHttpException ({self.status_code}):{self.url} -> {self.message}'
+
+    def __repr__(self):
+        return f'<TimeularHttpException [{self.status_code}]>'

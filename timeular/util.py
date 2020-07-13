@@ -1,7 +1,7 @@
 import requests
 from json import dumps
 from typing import Dict, Any
-from .exceptions import ResponseError
+from .exceptions import TimeularHttpException
 
 
 class TimeularApiUtil:
@@ -9,7 +9,7 @@ class TimeularApiUtil:
     """
 
     def __init__(self):
-        """TimeularApiUtil contructor
+        """TimeularApiUtil constructor
         provides methods for making requests to Timeular API
         """
         self.base_url = 'https://api.timeular.com/api/v2'
@@ -90,7 +90,7 @@ class TimeularApiUtil:
     @staticmethod
     def _get_content_or_raise_error(response: requests.Response, key: str = None) -> Any:
         """Process response based on status_code.
-        If status_code is in 2xx range, returns processed Fresponse, otherwise ResponseError is raised.
+        If status_code is in 2xx range, returns processed result, otherwise TimeularHttpException is raised.
         """
         status_code = response.status_code
 
@@ -111,4 +111,4 @@ class TimeularApiUtil:
             return response.content
         else:
             reason = response.json()['message']
-            raise ResponseError(status_code, reason)
+            raise TimeularHttpException(status_code, response.url, reason)
