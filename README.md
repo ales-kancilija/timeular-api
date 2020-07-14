@@ -50,5 +50,37 @@ sport_activity = activities.unassign_activity_from_device_side(sport_activity.ge
 # Archive activity (Activity doesn't get deleted, but archived. All its the recorded entries remain)
 # returns a List[str] of errors which can be ignored and did not prevented action to be performed successfully. 
 activities.archive(sport_activity.get('id'))
+
+# DEVICES
+devices = client.devices()
+
+# get list of known devices
+all_devices = devices.list()
+
+device = all_devices[0]
+
+# Activate a device
+device = devices.activate(device.get('serial'))
+
+# Deactivate a device
+device = devices.deactivate(device.get('serial'))
+
+# Rename a device
+device = devices.rename(device.get('serial'), 'Best Gadget')
+
+# Enable a device
+device = devices.enable(device.get('serial'))
+
+# Disable a device
+device = devices.disable(device.get('serial'))
+
+# Check if device is enabled
+enabled = devices.is_enabled(device.get('serial'))
+
+# Check if device is active
+active = devices.is_active(device.get('serial'))
+
+# Remove device from know devices
+devices.disown(device.get('serial'))
 ```
     
