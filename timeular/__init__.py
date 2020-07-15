@@ -2,6 +2,7 @@ from .util import TimeularApiUtil
 from .integrations import Integrations
 from .activities import Activities
 from .devices import Devices
+from .reports import Reports
 
 
 class Timeular(TimeularApiUtil):
@@ -65,3 +66,8 @@ class Timeular(TimeularApiUtil):
         """Access endpoints for devices
         """
         return Devices(self.token)
+
+    def reports(self) -> Reports:
+        """Access endpoints for reports
+        """
+        return Reports(self.token)

@@ -22,9 +22,11 @@ client.get_api_key()
 # gets new api key and secret. Updates values 'timeular.api_key' and 'timeular.api_secret'
 client.generate_api_key_and_secret()
 
+
 # INTEGRATIONS
 integrations = client.integrations()
 enabled_integraions = integrations.get_enabled_integrations()
+
 
 # ACTIVITIES
 activities = client.activities()
@@ -50,6 +52,7 @@ sport_activity = activities.unassign_activity_from_device_side(sport_activity.ge
 # Archive activity (Activity doesn't get deleted, but archived. All its the recorded entries remain)
 # returns a List[str] of errors which can be ignored and did not prevented action to be performed successfully. 
 activities.archive(sport_activity.get('id'))
+
 
 # DEVICES
 devices = client.devices()
@@ -82,5 +85,25 @@ active = devices.is_active(device.get('serial'))
 
 # Remove device from know devices
 devices.disown(device.get('serial'))
+
+
+# REPORT
+reports = client.reports()
+
+# Get a enerated report (only with a PRO account)
+from datetime import datetime, timedelta
+_from = datetime.now() - timedelta(days=60)
+_end = datetime.now()
+report = reports.generate(start_at=_from, end_at=_end, timezone='Slovenia/Ljubljana')
+
+# or if you wish to get report for specific activity, containing some query string in notes, exported to XLSX format
+report = reports.generate(
+    start_at=_from,
+    end_at=_end,
+    timezone='Slovenia/Ljubljana',
+    activity_id=sport_activity.get('id'),
+    note_query='hiking',
+    file_type='XLSX'
+)
 ```
     
