@@ -23,8 +23,8 @@ class TimeularApiUtil:
         if args is None:
             args = {}
 
-        args.update(**{'headers': self._get_headers(token)})
-        return requests.get(full_url, params=dumps(params), **args)
+        args.update({'headers': self._get_headers(token)})
+        return requests.get(full_url, params=params, **args)
 
     def _post(self, uri: str, data: Dict = None, json: Dict = None, args: Dict = None, token: str = None) -> Any:
         """Create POST http request
@@ -37,7 +37,7 @@ class TimeularApiUtil:
         if args is None:
             args = {}
 
-        args.update(**{'headers': self._get_headers(token)})
+        args.update({'headers': self._get_headers(token)})
         return requests.post(full_url, data=dumps(data), json=json, **args)
 
     def _put(self, uri: str, data: Dict = None, args: Dict = None, token: Dict = None) -> Any:
@@ -49,7 +49,7 @@ class TimeularApiUtil:
         if args is None:
             args = {}
 
-        args.update(**{'headers': self._get_headers(token)})
+        args.update({'headers': self._get_headers(token)})
         return requests.put(full_url, data=dumps(data), **args)
 
     def _patch(self, uri: str, data: Dict = None, args: Dict = None, token: str = None) -> Any:
@@ -61,7 +61,7 @@ class TimeularApiUtil:
         if data is None:
             data = {}
 
-        args.update(**{'headers': self._get_headers(token)})
+        args.update({'headers': self._get_headers(token)})
         return requests.patch(full_url, data=dumps(data), **args)
 
     def _delete(self, uri: str, args: Dict = None, token: str = None) -> Dict:
@@ -71,7 +71,7 @@ class TimeularApiUtil:
         if args is None:
             args = {}
 
-        args.update(**{'headers': self._get_headers(token)})
+        args.update({'headers': self._get_headers(token)})
         return requests.delete(full_url, **args)
 
     @staticmethod
